@@ -1,0 +1,4 @@
+﻿  MD5.cpp
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\Exam_OOP\MD5.cpp(84,39): warning C4267: аргумент: преобразование из "size_t" в "MD5::size_type"; возможна потеря данных
+MSVCRTD.lib(exe_main.obj) : error LNK2019: ссылка на неразрешенный внешний символ main в функции "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ).
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\x64\Debug\Exam_OOP.exe : fatal error LNK1120: неразрешенных внешних элементов: 1
