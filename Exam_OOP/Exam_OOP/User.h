@@ -57,10 +57,10 @@ public:
 
 	void SetLogin(string login) { this->login = login; }
 
-	void Remove_test(int n, string path_users_name_test, string second, string test_time); //метод удаления пройденного теста
+	void Remove_test(int n, string path_users_name_test, string second, string test_time);
 
 	string GetLogin() { return this->login; }
-	string GetUserLogins() { return this->folder; } //геттер папки для хранения регистрационных данных пользователей
+	string GetUserLogins() { return this->folder; }
 	string UserSignIn();
 	string GetUsersFolder() { return this->UsersFolder; }
 	string GetUsersInfo() { return this->usersinfo; }
@@ -94,20 +94,19 @@ public:
 	Admin() {};
 	~Admin() {};
 
-	string GetFilename() { return filename; } //геттер названия файла с логином и паролем администратора системы	
+	string GetFilename() { return filename; } //геттер названия файла с логином и паролем администратора системы
 
-	void ChangeLogin(); //изменение логина и пароля администратора  системы
-	void DeleteUser();//удаление пользовтаеля
-	void Modification();//модификация пользовтаеля
-	void PrintStudents();//вывод всех зарегистрированных пользователей системы тестирования кратко
-	void PrintStudentsFull();//вывод всех анктетных данных пользователей системы тестирования
+	void ChangeLogin();
+	void DeleteUser();
+	void Modification();
+	void PrintStudents();
+	void PrintStudentsFull();
 
-	void AddCategories();//добавление категорий для тестов
-	void EditCategories();//редкатирование категорий для тестов
-	void AddTestsName();//добавление названий тестов
-	void AddTests();//добавление тестов
+	void AddCategories();
+	void EditCategories();
+	void AddTestsName();
+	void AddTests();
 
-	//void ShowUserTests();
 
 	friend bool CheckAdmin();
 
@@ -131,8 +130,8 @@ public:
 	void Registration() override;
 	void ShowUserGrade(string userName) override;
 
-	void NewTest(); // запуск нового тестирования
-	void ContinueTest(); // продолжить незавершенный тест тестирования
+	void NewTest();
+	void ContinueTest();
 
 private:
 	string filename;
@@ -177,7 +176,7 @@ string User::UserSignIn()
 		try
 		{
 			afin.open(path);
-			//afin >> adminlogin;
+
 			int count = 0;
 			while (!afin.eof())
 			{
@@ -226,7 +225,7 @@ string User::UserSignIn()
 			cout << "Пользователь с таким логином не найден.";
 			gotoxy(25, ++gotx);
 			system("pause");
-			//return this->login;
+
 			return "Зарегистрируйтесь, или войдите";
 		}
 
@@ -236,8 +235,6 @@ string User::UserSignIn()
 		//проверяем есть ли пользовательский файл с веденным логином
 
 		bool ckfile = ufin.is_open();
-
-		//bool ckfile = ufin.open(path);
 
 		try
 		{
@@ -272,7 +269,6 @@ string User::UserSignIn()
 				else
 				{
 					throw ExceptionUser("Вы ввели неверный пароль пользователя", 4);
-					//return this->login;
 				}
 			}
 		}

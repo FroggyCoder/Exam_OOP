@@ -1,11 +1,8 @@
 #pragma once
 
+
 void UseMenu(string name, int ItemCount);
 
-//Запуск нужных элементов Меню реализуется используя паттерн Фабричный метод (Factory method)	
-//Определяет интерфейс для создания объекта, но оставляет подклассам решение о том, какой класс инстанцировать.
-
-// UseMenu(string name, int ItemCount) - в эту функцию передается количество элементов меню и кто ее вызвал, user или admin
 
 class Menu
 {
@@ -87,20 +84,20 @@ private:
 void MenuAdmin::printMenu()
 {
 	system("cls");
-	int ItemCount = 5; // Эта переменная содержит количество пунктов меню.	
+	int ItemCount = 5;
 	UseMenu("admin", ItemCount);
 }
 
 
 void MenuSign::printMenu()
 {
-	int ItemCount = 3; // Эта переменная содержит количество пунктов меню.	
+	int ItemCount = 3;
 	UseMenu("sign", ItemCount);
 }
 
 void MenuStudent::printMenu()
 {
 	system("cls");
-	int ItemCount = 4; // Эта переменная содержит количество пунктов меню.	
+	int ItemCount = 4;
 	UseMenu("student", ItemCount);
 }

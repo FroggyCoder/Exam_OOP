@@ -7,7 +7,6 @@ using namespace std;
 class Encryption
 {
 public:
-	//Encryption() {};
 	Encryption(string mycode) : mycode(mycode) {}
 	~Encryption() {};
 
