@@ -1,1 +1,10 @@
-﻿  Exam_OOP.vcxproj -> C:\GitHubRepositories\Exam_OOP\Exam_OOP\x64\Debug\Exam_OOP.exe
+﻿  main.cpp
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\Exam_OOP\Encryption.h(30,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\Exam_OOP\Encryption.h(34,26): warning C4244: +=: преобразование "double" в "char", возможна потеря данных
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\Exam_OOP\Encryption.h(52,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\Exam_OOP\Encryption.h(56,26): warning C4244: -=: преобразование "double" в "char", возможна потеря данных
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\Exam_OOP\md5.h(194,39): warning C4267: аргумент: преобразование из "size_t" в "MD5::size_type"; возможна потеря данных
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ "void __cdecl UseMenu(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,int)" (?UseMenu@@YAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z) в функции "public: virtual void __cdecl MenuAdmin::printMenu(void)" (?printMenu@MenuAdmin@@UEAAXXZ).
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ "void __cdecl gotoxy(int,int)" (?gotoxy@@YAXHH@Z) в функции "public: virtual void __cdecl Admin::Registration(void)" (?Registration@Admin@@UEAAXXZ).
+main.obj : error LNK2001: неразрешенный внешний символ "public: virtual void __cdecl Admin::ShowUserGrade(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?ShowUserGrade@Admin@@UEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z).
+C:\GitHubRepositories\Exam_OOP\Exam_OOP\x64\Debug\Exam_OOP.exe : fatal error LNK1120: неразрешенных внешних элементов: 3
