@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Encryption.h" />
+    <ClInclude Include="Function.h" />
     <ClInclude Include="MD5.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MyExceptions.h" />

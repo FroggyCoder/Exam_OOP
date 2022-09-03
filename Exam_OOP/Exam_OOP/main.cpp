@@ -9,11 +9,13 @@
 
 #include"MyExceptions.h"
 #include"User.h"
-
+#include"Function.h"
 #include"md5.h"
 
 
 using namespace std;
+
+namespace fs = std::experimental::filesystem;
 
 
 int main()
@@ -23,6 +25,28 @@ int main()
 
 	//srand(time(0));
 
+
+
+	if (!CheckAdmin())
+	{
+		unique_ptr<Admin> admin(new Admin);
+		admin->Registration();
+		system("cls");
+	}
+
+	unique_ptr<Student> student(new Student);
+	fs::create_directories(student->GetUserLogins());
+
+	unique_ptr<Admin> adf(new Admin);
+	fs::create_directories(adf->GetTestFolder());
+	fs::create_directories(adf->GetUsersFolder());
+
+	unique_ptr<Menu> menu;
+	shared_ptr<Factory> main_menu;
+	shared_ptr<SignFactory> ma(new SignFactory);
+	main_menu = ma;
+	menu = main_menu->runMenu();
+	menu->printMenu();
 
 	return 0;
 }
