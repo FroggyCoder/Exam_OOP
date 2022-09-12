@@ -50,7 +50,7 @@ bool CheckAdmin()
 
 string* MenuItems(string user); // функция, которая возвращает имя пункта меню.
 
-void gotoxy(int, int); //с помощью этой функции вы можете перейти в любую позицию на экране строки cmd.
+void gotoxy(int, int);
 
 void ChangeCursorStatus(bool);
 
@@ -135,13 +135,13 @@ void UseMenu(string user, int ItemCount)
 	int MenuChoice = 1; // Эта переменная содержит позицию курсора. 
 	char key; // для ввода ключа (стрелка вверх, стрелка вниз и т. д.);
 
-	typedef void (*TMenuOption)(); // typedef for defining a 'pointer to function' type.
+	typedef void (*TMenuOption)();
 
 	TMenuOption* MenuOption = new TMenuOption[ItemCount];// массив указателей на функции (динамический).
 
 	if (user == "admin")
 	{
-		MenuOption[0] = AdminFun1; // заполнение массива функциями.
+		MenuOption[0] = AdminFun1;
 		MenuOption[1] = AdminFun2;
 		MenuOption[2] = AdminFun3;
 		MenuOption[3] = AdminFun4;
@@ -270,7 +270,7 @@ void gotoxy(int xpos, int ypos)
 void AdminFun1()
 {
 	char key = '1'; // для ввода ключа (стрелка вверх, стрелка вниз и т. д.);
-	//char key = _getch();
+
 	do
 	{
 		system("cls");
@@ -342,7 +342,6 @@ void AdminFun1()
 	} while (key != '0');
 
 
-	//_getch();
 	system("cls");
 }
 //-----------------------------------------------------------------------------------------------
@@ -360,7 +359,7 @@ void AdminFun2()
 void AdminFun3()
 {
 	char key = '1';
-	//key = _getch();
+
 	do
 	{
 		system("cls");
@@ -431,7 +430,6 @@ void AdminFun3()
 	} while (key != '0');
 
 
-	//_getch();
 	system("cls");
 }
 
@@ -446,7 +444,6 @@ void AdminFun4()
 
 	admin->ChangeLogin();
 
-	//_getch();
 	system("cls");
 }
 
@@ -511,7 +508,6 @@ void MenuFun21() // регистрация пользователя
 	unique_ptr<Student> st(new Student);
 	st->Registration();
 
-	//_getch();
 	system("cls");
 }
 
@@ -531,15 +527,13 @@ void StudentFun1() // регистрация пользователя
 	student->NewTest();
 
 	gotoxy(25, 7);
-	//cin.ignore();
-	//_getch();
 	system("cls");
 }
 
 //-----------------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------------------
-void StudentFun2() // 
+void StudentFun2()
 {
 	system("cls");
 
@@ -551,14 +545,13 @@ void StudentFun2() //
 	student->SetLogin(userName->GetUser());
 	student->ContinueTest();
 
-	//_getch();
 	system("cls");
 }
 
 //-----------------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------------------------
-void StudentFun3() // 
+void StudentFun3()
 {
 	system("cls");
 
@@ -569,9 +562,6 @@ void StudentFun3() //
 	student->SetLogin(userName->GetUser());
 	student->ShowUserGrade(userName->GetFIO());
 
-	//gotoxy(25, 7);
-
-	//_getch();
 	system("cls");
 }
 
@@ -602,4 +592,3 @@ void ChangeCursorStatus(bool Visible)
 
 	SetConsoleCursorInfo(h, c);
 }
-//-----------------------------------------------------------------------------------------------
