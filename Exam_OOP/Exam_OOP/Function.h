@@ -46,30 +46,27 @@ bool CheckAdmin()
 	}
 }
 
-//------------------------------------------------
-
-string* MenuItems(string user); // функция, которая возвращает имя пункта меню.
+string* MenuItems(string user);
 
 void gotoxy(int, int);
 
 void ChangeCursorStatus(bool);
 
-void AdminFun1(); // #1. Создание, удаление, модификация пользователей.
-void AdminFun2(); // #2. Просмотр статистики."
-void AdminFun3(); // #3. Управление тестированием.";
-void AdminFun4(); // #4. Изменение логина и пароля администратора";
+void AdminFun1(); // 1. Создание, удаление, модификация пользователей.
+void AdminFun2(); // 2. Просмотр статистики."
+void AdminFun3(); // 3. Управление тестированием.";
+void AdminFun4(); // 4. Изменение логина и пароля администратора";
 
-void MenuFun20(); //  пункт меню входа пользователя в систему
+void MenuFun20(); // пункт меню входа пользователя в систему
 void MenuFun21(); // пункт меню регистрации пользователя в системе
 
-void StudentFun1(); //#1. Сдать новое тестирование.";
-void StudentFun2(); //#2. Продолжить тестирование
-void StudentFun3(); //#3 Просмотреть список пройденных тестов
+void StudentFun1(); //1. Сдать новое тестирование.";
+void StudentFun2(); //2. Продолжить тестирование
+void StudentFun3(); //3 Просмотреть список пройденных тестов
 
-void ExitOption(); // элемент выхода
+void ExitOption();
 
 
-//Отображение текущего имени пользователя
 class UserName
 {
 public:
@@ -132,12 +129,12 @@ void UseMenu(string user, int ItemCount)
 {
 	ChangeCursorStatus(false);
 
-	int MenuChoice = 1; // Эта переменная содержит позицию курсора. 
-	char key; // для ввода ключа (стрелка вверх, стрелка вниз и т. д.);
+	int MenuChoice = 1;
+	char key;
 
 	typedef void (*TMenuOption)();
 
-	TMenuOption* MenuOption = new TMenuOption[ItemCount];// массив указателей на функции (динамический).
+	TMenuOption* MenuOption = new TMenuOption[ItemCount];
 
 	if (user == "admin")
 	{
@@ -163,17 +160,16 @@ void UseMenu(string user, int ItemCount)
 		MenuOption[3] = ExitOption;
 	}
 
-
-	while (1) // этот цикл не прервется, поэтому нам нужна функция выхода.
+	while (1)
 	{
 
-		for (int i = 0; i < ItemCount; i++) // вывод Меню.
+		for (int i = 0; i < ItemCount; i++)
 		{
 
 			gotoxy(23, 7 + i);
 			MenuChoice == i + 1 ? cout << " -> " : cout << "    ";
 
-			cout << MenuItems(user)[i] << endl; // вывод названий Меню
+			cout << MenuItems(user)[i] << endl;
 		}
 
 		gotoxy(0, 0);
@@ -181,13 +177,12 @@ void UseMenu(string user, int ItemCount)
 
 		key = _getch();
 
-		switch (key) // проверка введенного ключа.
+		switch (key)
 		{
-		case '\r': // если введенный ключ - «Enter».
+		case '\r':
 			try
 			{
-				(*MenuOption[MenuChoice - 1])(); // вызвать функцию индекса 'cursor-1' в
-											   //    массив "указатель на функцию".
+				(*MenuOption[MenuChoice - 1])();
 			}
 			catch (...)
 			{
@@ -196,19 +191,19 @@ void UseMenu(string user, int ItemCount)
 
 			break;
 
-		case 'P': // 'up arrow' 
+		case 'P':
 			MenuChoice++;
 			if (MenuChoice > ItemCount)
 				MenuChoice = 1;
 			break;
 
-		case 'H': // 'down arrow'
+		case 'H':
 			MenuChoice--;
 			if (MenuChoice < 1)
 				MenuChoice = ItemCount;
 			break;
 
-		case 27:// (Esc)
+		case 27:
 			try { (*MenuOption[ItemCount - 1])(); }
 			catch (...) {}
 			break;
@@ -225,7 +220,6 @@ void UseMenu(string user, int ItemCount)
 	delete[]MenuOption;
 }
 
-//-----------------------------------------------------------------------------------------------
 string* MenuItems(string user)
 {
 	if (user == "admin")
@@ -258,7 +252,7 @@ string* MenuItems(string user)
 		return item;
 	}
 }
-//-----------------------------------------------------------------------------------------------
+
 void gotoxy(int xpos, int ypos)
 {
 	COORD scrn;
@@ -266,10 +260,10 @@ void gotoxy(int xpos, int ypos)
 	scrn.X = xpos; scrn.Y = ypos;
 	SetConsoleCursorPosition(hOuput, scrn);
 }
-//-----------------------------------------------------------------------------------------------
+
 void AdminFun1()
 {
-	char key = '1'; // для ввода ключа (стрелка вверх, стрелка вниз и т. д.);
+	char key = '1';
 
 	do
 	{
@@ -297,31 +291,30 @@ void AdminFun1()
 
 		cin >> key;
 
-		switch (key) // проверка введенного ключа.
+		switch (key)
 		{
-		case '1': // Создание.			
+		case '1':		
 		{
 			unique_ptr<Student> st(new Student);
 			st->Registration();
-			//_getch();
 			break;
 		}
 
-		case '2': // Удаление
+		case '2':
 		{
 			unique_ptr<Admin> ad(new Admin);
 			ad->DeleteUser();
 			break;
 		}
 
-		case '3': // Модификация
+		case '3':
 		{
 			unique_ptr<Admin> ad(new Admin);
 			ad->Modification();
 			break;
 		}
 
-		case '4': // Вывод на экран списка зарегистрированных пользователей
+		case '4':
 		{
 			system("cls");
 			unique_ptr<Admin> ad(new Admin);
@@ -331,7 +324,7 @@ void AdminFun1()
 			break;
 		}
 
-		case '0': // Выход
+		case '0':
 		{
 			break;
 		}
@@ -344,7 +337,7 @@ void AdminFun1()
 
 	system("cls");
 }
-//-----------------------------------------------------------------------------------------------
+
 void AdminFun2()
 {
 	system("cls");
@@ -355,7 +348,7 @@ void AdminFun2()
 	admin->ShowUserGrade(userName->GetFIO());
 	system("cls");
 }
-//-----------------------------------------------------------------------------------------------
+
 void AdminFun3()
 {
 	char key = '1';
@@ -385,16 +378,16 @@ void AdminFun3()
 
 		cin >> key;
 
-		switch (key) // проверка введенного ключа.
+		switch (key)
 		{
-		case '1': // Создание разделов			
+		case '1':		
 		{
 			unique_ptr<Admin> ad(new Admin);
 			ad->AddCategories();
 			break;
 		}
 
-		case '2': // Редактирование разделов	
+		case '2':	
 		{
 			unique_ptr<Admin> ad(new Admin);
 
@@ -403,14 +396,14 @@ void AdminFun3()
 			break;
 		}
 
-		case '3': // Создание тестов
+		case '3':
 		{
 			unique_ptr<Admin> ad(new Admin);
 			ad->AddTests();
 			break;
 		}
 
-		case '4': // Редактирование тестов
+		case '4':
 		{
 			unique_ptr<Admin> ad(new Admin);
 
@@ -419,7 +412,7 @@ void AdminFun3()
 			break;
 		}
 
-		case '0': // Выход
+		case '0':
 		{
 			break;
 		}
@@ -447,8 +440,6 @@ void AdminFun4()
 	system("cls");
 }
 
-
-//-----------------------------------------------------------------------------------------------
 void MenuFun20() //вход пользователя в систему
 {
 	system("cls");
@@ -457,7 +448,6 @@ void MenuFun20() //вход пользователя в систему
 	cout << "Пользователь: " << userName->GetUser() << " (" << userName->GetFIO() << ")";;
 	gotoxy(25, 7);
 
-	//Вход через почту
 	unique_ptr<Student> user(new Student);
 
 	string name;
@@ -496,8 +486,8 @@ void MenuFun20() //вход пользователя в систему
 	_getch();
 	system("cls");
 }
-//-----------------------------------------------------------------------------------------------
-void MenuFun21() // регистрация пользователя
+
+void MenuFun21()
 {
 	system("cls");
 
@@ -511,10 +501,7 @@ void MenuFun21() // регистрация пользователя
 	system("cls");
 }
 
-//-----------------------------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------------------------
-void StudentFun1() // регистрация пользователя
+void StudentFun1()
 {
 	system("cls");
 
@@ -530,9 +517,6 @@ void StudentFun1() // регистрация пользователя
 	system("cls");
 }
 
-//-----------------------------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------------------------
 void StudentFun2()
 {
 	system("cls");
@@ -548,9 +532,6 @@ void StudentFun2()
 	system("cls");
 }
 
-//-----------------------------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------------------------
 void StudentFun3()
 {
 	system("cls");
@@ -565,7 +546,6 @@ void StudentFun3()
 	system("cls");
 }
 
-//-----------------------------------------------------------------------------------------------
 void ExitOption()
 {
 	gotoxy(30, 15);
@@ -573,7 +553,7 @@ void ExitOption()
 	_getch();
 	exit(0);
 }
-//-----------------------------------------------------------------------------------------------
+
 void ChangeCursorStatus(bool Visible)
 {
 	CONSOLE_CURSOR_INFO* c = new CONSOLE_CURSOR_INFO;

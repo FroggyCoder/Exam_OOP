@@ -36,9 +36,6 @@ public:
 
 		s = this->mycode;
 	}
-
-private:
-
 };
 
 class Decrypt : public Encryption
@@ -58,7 +55,4 @@ public:
 		}
 		s = this->mycode;
 	}
-
-private:
-
 };

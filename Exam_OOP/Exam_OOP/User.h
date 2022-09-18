@@ -45,8 +45,8 @@ enum ConsoleColor
 };
 
 
-
 HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
 
 void SetColor(int text, int background)
 {
@@ -57,7 +57,6 @@ void SetColor(int text, ConsoleColor background)
 {
 	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
 }
-
 
 class User
 {
@@ -71,10 +70,10 @@ public:
 
 	void SetLogin(string login) { this->login = login; }
 
-	void Remove_test(int n, string path_users_name_test, string second, string test_time); //метод удаления пройденного теста
+	void Remove_test(int n, string path_users_name_test, string second, string test_time);
 
 	string GetLogin() { return this->login; }
-	string GetUserLogins() { return this->folder; } //геттер папки для хранения регистрационных данных пользователей
+	string GetUserLogins() { return this->folder; }
 	string UserSignIn();
 	string GetUsersFolder() { return this->UsersFolder; }
 	string GetUsersInfo() { return this->usersinfo; }
@@ -92,12 +91,12 @@ protected:
 	string login;
 	string pass;
 	string usersinfo = "UsersInfo.txt";
-	string UsersFolder = "UsersFolder"; // папка для хранения реузльтатов тестирования студентов
+	string UsersFolder = "UsersFolder"; //папка для хранения реузльтатов тестирования студентов
 	static string folder; //имя папки для сохранения регистрационных данных студентов
-	string TestFolder = "TestFolder"; // папка для хранения вопросов тестирования
-	string TestsName = "TestsName.txt"; // файл в котором хранятся названия тестов в категории
-	string CategoriesFile = "CategoriesFile.txt"; // файл в котором хранятся категории с тестами
-	string StudentsFile = "StudentsFile.txt"; // файл в котором хранятся логины и ФИО студентов	
+	string TestFolder = "TestFolder"; //папка для хранения вопросов тестирования
+	string TestsName = "TestsName.txt"; //файл в котором хранятся названия тестов в категории
+	string CategoriesFile = "CategoriesFile.txt"; //файл в котором хранятся категории с тестами
+	string StudentsFile = "StudentsFile.txt"; //файл в котором хранятся логины и ФИО студентов	
 };
 
 string User::folder = "StudentLogin";
@@ -108,20 +107,18 @@ public:
 	Admin() {};
 	~Admin() {};
 
-	string GetFilename() { return filename; } //геттер названия файла с логином и паролем администратора системы	
+	string GetFilename() { return filename; }
 
 	void ChangeLogin(); //изменение логина и пароля администратора  системы
-	void DeleteUser();//удаление пользовтаеля
-	void Modification();//модификация пользовтаеля
-	void PrintStudents();//вывод всех зарегистрированных пользователей системы тестирования кратко
-	void PrintStudentsFull();//вывод всех анктетных данных пользователей системы тестирования
+	void DeleteUser(); //удаление пользовтаеля
+	void Modification(); //модификация пользовтаеля
+	void PrintStudents(); //вывод всех зарегистрированных пользователей системы тестирования кратко
+	void PrintStudentsFull(); //вывод всех анктетных данных пользователей системы тестирования
 
-	void AddCategories();//добавление категорий для тестов
-	void EditCategories();//редкатирование категорий для тестов
-	void AddTestsName();//добавление названий тестов
-	void AddTests();//добавление тестов
-
-	//void ShowUserTests();
+	void AddCategories(); //добавление категорий для тестов
+	void EditCategories(); //редкатирование категорий для тестов
+	void AddTestsName(); //добавление названий тестов
+	void AddTests(); //добавление тестов
 
 	friend bool CheckAdmin();
 
@@ -130,7 +127,6 @@ public:
 
 private:
 	static string filename;
-
 };
 
 string Admin::filename = "admin.txt";
@@ -145,8 +141,8 @@ public:
 	void Registration() override;
 	void ShowUserGrade(string userName) override;
 
-	void NewTest(); // запуск нового тестирования
-	void ContinueTest(); // продолжить незавершенный тест тестирования
+	void NewTest();
+	void ContinueTest();
 
 private:
 	string filename;
@@ -191,7 +187,6 @@ string User::UserSignIn()
 		try
 		{
 			afin.open(path);
-			//afin >> adminlogin;
 			int count = 0;
 			while (!afin.eof())
 			{
@@ -240,7 +235,6 @@ string User::UserSignIn()
 			cout << "Пользователь с таким логином не найден.";
 			gotoxy(25, ++gotx);
 			system("pause");
-			//return this->login;
 			return "Зарегистрируйтесь, или войдите";
 		}
 
@@ -250,8 +244,6 @@ string User::UserSignIn()
 		//проверяем есть ли пользовательский файл с веденным логином
 
 		bool ckfile = ufin.is_open();
-
-		//bool ckfile = ufin.open(path);
 
 		try
 		{
@@ -286,7 +278,6 @@ string User::UserSignIn()
 				else
 				{
 					throw ExceptionUser("Вы ввели неверный пароль пользователя", 4);
-					//return this->login;
 				}
 			}
 		}
@@ -341,7 +332,6 @@ inline void Admin::Registration()
 		cout << "admin";
 		SetColor(15, Black);
 		string login = "admin";
-		//cin >> login;
 		string md5login;
 		md5login = md5(login);
 
@@ -405,7 +395,6 @@ inline void Admin::ChangeLogin()
 		string md5pass;
 		md5pass = md5(pass);
 
-		//сохраняем в файл введенный логи и пароль
 		fout.open(path);
 		fout << md5login << "\n";
 		fout << md5pass;
@@ -440,7 +429,6 @@ inline void Admin::DeleteUser()
 	map <string, string> mp_users;
 	string path = this->GetUsersFolder() + "/" + this->GetStudentsFile();
 
-	//папка для хранения личных данных в одном файле по каждому пользоввателю
 	string path2 = this->GetUsersFolder() + "/" + this->GetUsersInfo();
 
 	string key, data, key_u, data_u;
@@ -590,7 +578,6 @@ inline void Admin::DeleteUser()
 							gotoxy(25, ++gotx);
 							system("pause");
 						}
-
 						std::uintmax_t n = fs::remove_all(userfolder.c_str());
 					}
 				}
@@ -731,7 +718,6 @@ inline void Admin::Modification()
 	map <string, string> mp;
 	string path = this->GetUsersFolder() + "/" + this->GetStudentsFile();
 
-	//папка для хранения личных данных в одном файле по каждому пользоввателю
 	string path2 = this->GetUsersFolder() + "/" + this->GetUsersInfo();
 
 	string key, data, key_u, data_u;
@@ -1109,7 +1095,6 @@ inline void Admin::EditCategories()
 					const char* oldname = s_old.c_str();
 					const char* nename = s_new.c_str();
 
-					//создание новой папки с новым названием, перенос в нее тестов и удаление папки со старым названием
 					rename(oldname, nename);
 
 					if (remove(path.c_str()) != 0)
@@ -1246,7 +1231,7 @@ inline void Admin::AddTestsName()
 
 					count = 1;
 
-					mp.clear(); //очищаем map с категориями разделов, и заполняем его названиями существующих тестов
+					mp.clear();
 
 					ifs.open(path);
 
@@ -1453,7 +1438,7 @@ inline void Admin::AddTests()
 
 						if (it_test != map_test.end())
 						{
-							path = this->GetTestFolder() + "/" + it->second + "/" + it_test->second + "/" + "quantity.txt"; // количество вопросов в тесте
+							path = this->GetTestFolder() + "/" + it->second + "/" + it_test->second + "/" + "quantity.txt";
 
 							count = 1;
 							int q_key = 0, a_key = 0;
@@ -1580,7 +1565,6 @@ inline void Admin::AddTests()
 								gotoxy(25, ++gotx);
 								cout << i << ". ";
 								getline(cin, answer);
-								//cin.ignore();
 								manswer.emplace(++a_key, answer);
 							}
 
@@ -1651,9 +1635,6 @@ inline void Admin::ShowUserGrade(string userName)
 	map <string, string> mp;
 	string path = this->GetUsersFolder() + "/" + this->GetStudentsFile();
 
-	//папка для хранения личных данных в одном файле по каждому пользоввателю
-	//string path2 = this->GetUsersFolder() + "/" + this->GetUsersInfo();
-
 	string key, data, login;
 	ifstream ifs;
 	int gotx = 6;
@@ -1685,8 +1666,6 @@ inline void Admin::ShowUserGrade(string userName)
 
 		this->PrintStudents();
 
-		//gotoxy(25, ++gotx);
-	//	cout << "Просмотра статистики сданных тестов у студента";
 		gotoxy(25, ++gotx);
 		cout << "Введите мобильний номер телефона студента: ";
 		cin >> key;
@@ -1756,8 +1735,6 @@ void Student::Registration()
 
 	try
 	{
-		//проверка на логин администратора системы
-
 		if (this->login + ".txt" == path)
 		{
 			throw ExceptionUser("Регистрация с веденным логином запрещена", 2);
@@ -1793,14 +1770,12 @@ void Student::Registration()
 			cout << "Введите ФИО: ";
 			string name;
 			getline(cin, name);
-			sfout << name << "\n";
-			//ufout << name << "\n";			
+			sfout << name << "\n";		
 
 			gotoxy(25, ++gotx);
 			cout << "Введите номер мобильного телефона: +38";
 			string telephone;
-			getline(cin, telephone);
-			//sfout << telephone << "\n";			
+			getline(cin, telephone);		
 
 			afout << telephone << "\n" << name << " (логин: " << this->login << ")" << "\n";
 			afout.close();
@@ -1809,7 +1784,6 @@ void Student::Registration()
 			cout << "Введите домашний адрес: ";
 			string adress;
 			getline(cin, adress);
-			//sfout << adress << "\n";
 
 			ufout << telephone << "\n" << "ФИО: " << name << ". Домашний адрес: " << adress << "\n";
 
@@ -1922,9 +1896,9 @@ inline void Student::NewTest()
 
 				count = 1;
 
-				string category_name = it->second; //сохраняем текущее название категории
+				string category_name = it->second;
 
-				mp.clear(); //очищаем map с категориями разделов, и заполняем его названиями существующих тестов
+				mp.clear();
 
 				ifs.open(path);
 
@@ -2062,10 +2036,9 @@ inline void Student::NewTest()
 							{
 								try
 								{
-
 									users_name_test.open(path_users_test);
 
-									users_name_test << path_users_test << "\n"; //сохраняем путь к файлу для непройденного теста теста
+									users_name_test << path_users_test << "\n"; //сохраняем путь к файлу для непройденного теста
 									users_name_test << path_helper << "\n"; //путь к тесту который проходится
 									users_name_test << path_users_name_test << "\n";
 									users_name_test << it->second << "\n";
@@ -2131,8 +2104,6 @@ inline void Student::NewTest()
 								}
 							}
 
-							//Если тест пройден полностью, открываем файл, где записаны все начатые тесты
-							//находим и удаляем тест из списка
 							if (test_count = n)
 							{
 								this->Remove_test(n, path_users_name_test, it->second, test_time);
@@ -2169,8 +2140,6 @@ inline void Student::NewTest()
 
 								ofstream save_test;
 								save_test.exceptions(ofstream::badbit | ofstream::failbit);
-
-								//файл сохранения пройденых тестов с оценкой
 
 								path_helper = this->GetUsersFolder() + "/" + this->GetLogin() + "/" + "successful_test.txt";
 
@@ -2231,7 +2200,7 @@ inline void User::Remove_test(int n, string path_users_name_test, string second,
 {
 	vector<string> v_delete_finish_test;
 	ifstream p_in_delete_test;
-	//p_in_delete_test.exceptions(ifstream::badbit | ifstream::failbit);
+
 	try
 	{
 		p_in_delete_test.open(path_users_name_test);
@@ -2252,7 +2221,6 @@ inline void User::Remove_test(int n, string path_users_name_test, string second,
 
 		p_in_delete_test.close();
 		ofstream p_out_delete_test;
-		//p_out_delete_test.exceptions(ofstream::badbit | ofstream::failbit);
 
 		p_out_delete_test.open(path_users_name_test);
 
@@ -2431,7 +2399,6 @@ inline void Student::ContinueTest()
 	int gotx = 6;
 	map <int, string> mp;
 	string path = this->GetUsersFolder() + "/" + this->login + "/" + "student_name_tests.txt";
-	//string key, category, folder;
 
 	string name_test;
 	int count = -1; // счетчик кол-ва непройденных до конца тестов
@@ -2440,7 +2407,7 @@ inline void Student::ContinueTest()
 
 	try
 	{
-		//проверяем есть ли пользовательский файл с не завершеными тестами
+		//проверяем есть ли пользовательский файл с незавершеными тестами
 		bool ckfile = ifs.is_open();
 		ifs.close();
 
@@ -2530,7 +2497,6 @@ inline void Student::ContinueTest()
 							ofstream users_name_test;
 							users_name_test.exceptions(ofstream::badbit | ofstream::failbit);
 
-							//cin.ignore();
 							try
 							{
 								getline(ifs, test_path);
@@ -2541,7 +2507,6 @@ inline void Student::ContinueTest()
 								ifs >> n;
 								ifs >> test_count;
 								ifs >> ball_count;
-								//getline(ifs, test_path);
 
 							}
 							catch (...)
@@ -2550,8 +2515,6 @@ inline void Student::ContinueTest()
 							}
 
 							ifs.close();
-
-							//left_count = n - test_count;
 
 							for (size_t i = test_count + 1; i < n + 1; i++)
 							{
@@ -2624,8 +2587,6 @@ inline void Student::ContinueTest()
 								}
 							}
 
-							//Если тест пройден полностью, открываем файл, где записаны все начатые тесты
-						//находим и удаляем тест из списка
 							if (test_count = n)
 							{
 								this->Remove_test(n, path_users_name_test, it_second, test_time);
@@ -2662,8 +2623,6 @@ inline void Student::ContinueTest()
 
 								ofstream save_test;
 								save_test.exceptions(ofstream::badbit | ofstream::failbit);
-
-								//файл сохранения пройденых тестов с оценкой
 
 								path_helper = this->GetUsersFolder() + "/" + this->GetLogin() + "/" + "successful_test.txt";
 

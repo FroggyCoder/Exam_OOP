@@ -1,8 +1,6 @@
 #pragma once
 
-
 void UseMenu(string name, int ItemCount);
-
 
 class Menu
 {
@@ -10,9 +8,6 @@ public:
 	Menu() {};
 	~Menu() {};
 	virtual void printMenu() = 0;
-
-private:
-
 };
 
 class MenuAdmin : public Menu
@@ -37,9 +32,6 @@ class Factory
 public:
 
 	virtual unique_ptr<Menu> runMenu() = 0;
-
-private:
-
 };
 
 class AdminFactory : public Factory
@@ -50,9 +42,6 @@ public:
 	{
 		return make_unique<MenuAdmin>();
 	}
-
-private:
-
 };
 
 class SignFactory : public Factory
@@ -63,9 +52,6 @@ public:
 	{
 		return make_unique<MenuSign>();
 	}
-
-private:
-
 };
 
 class StudentFactory : public Factory
@@ -76,9 +62,6 @@ public:
 	{
 		return make_unique<MenuStudent>();
 	}
-
-private:
-
 };
 
 void MenuAdmin::printMenu()
